@@ -1,3 +1,4 @@
+// Package npmdl implements utility functions for working with npm download counts API.
 package npmdl
 
 import (
@@ -10,24 +11,44 @@ import (
 
 const baseURL string = "https://api.npmjs.org/downloads"
 
-// Client implements a NPM Downloads Counts API client.
-// You may use the Point and Range clients directly if preferred,
-// however Client exposes them both.
-type Client struct {
-	// Point *Point
-	// Range *Range
+// GetPointCounts gets the total downloads for a given period, for all packages or a specific package.
+// Period is the desired period to be queried. If empty defaults to "last-day".
+// Optionally pass in the package name in the pkg param.
+func GetPointCounts(period string, pkg string) (out *PointCounts, err error) {
+	if period == "" {
+		period = "last-day"
+	}
+
+	body, err := call("/point/" + period + "/" + pkg)
+	if err != nil {
+		return
+	}
+	defer body.Close()
+
+	err = json.NewDecoder(body).Decode(&out)
+	return
 }
 
-// New client.
-func New() *Client {
-	c := &Client{}
-	// c.Point = &Point{c}
-	// c.Range = &Range{c}
-	return c
+// GetRangeCounts gets the downloads per day for a given period, for all packages or a specific package.
+// Period is the desired period to be queried for the range. If empty defaults to "last-week".
+// Optionally pass in the package name in the pkg param.
+func GetRangeCounts(period string, pkg string) (out *RangeCounts, err error) {
+	if period == "" {
+		period = "last-week"
+	}
+
+	body, err := call("/range/" + period + "/" + pkg)
+	if err != nil {
+		return
+	}
+	defer body.Close()
+
+	err = json.NewDecoder(body).Decode(&out)
+	return
 }
 
 // call rpc style endpoint.
-func (c *Client) call(path string) (io.ReadCloser, error) {
+func call(path string) (io.ReadCloser, error) {
 	url := baseURL + path
 
 	res, err := http.Get(url)

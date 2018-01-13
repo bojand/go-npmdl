@@ -1,2 +1,8 @@
+[![GoDoc](https://godoc.org/github.com/bojand/go-npmdl?status.svg)]
+
 # go-npmdl
-npm download counts API client for Go
+Go library for working with [npm download counts API](https://github.com/npm/download-counts).
+
+# License
+
+Apache-2.0
