@@ -14,7 +14,7 @@ const baseURL string = "https://api.npmjs.org/downloads"
 //
 //  func ExampleGetPointCounts() {
 //      out, _ := npmdl.GetPointCounts("2017-08-10:2017-08-20", "express")
-//      fmt.Printf("%v\n", out)
+//      fmt.Printf("%+v", out)
 //  }
 //
 // Period is the desired period to be queried. If empty defaults to "last-day".
@@ -39,7 +39,7 @@ func GetPointCounts(period string, pkg string) (out *PointCounts, err error) {
 // Example using GetRangeCounts get point download counts for express for last week
 //  func ExampleGetRangeCounts() {
 //      out, _ := npmdl.GetRangeCounts("last-week", "express")
-//      fmt.Printf("%v\n", out)
+//      fmt.Printf("%+v", out)
 //  }
 //
 // Period is the desired period to be queried for the range. If empty defaults to "last-week".
