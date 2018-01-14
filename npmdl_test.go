@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestClient_error_bad_request(t *testing.T) {
+func TestCall_error_bad_request(t *testing.T) {
 
 	_, err := call("/point/asdf/express")
 
@@ -18,7 +18,7 @@ func TestClient_error_bad_request(t *testing.T) {
 	assert.Equal(t, 400, e.StatusCode)
 }
 
-func TestClient_GetPointCounts_no_period_no_package(t *testing.T) {
+func TestGetPointCounts_no_period_no_package(t *testing.T) {
 
 	out, err := GetPointCounts("", "")
 
@@ -29,7 +29,7 @@ func TestClient_GetPointCounts_no_period_no_package(t *testing.T) {
 	assert.Empty(t, out.Package)
 }
 
-func TestClient_GetPointCounts_no_period(t *testing.T) {
+func TestGetPointCounts_no_period(t *testing.T) {
 
 	out, err := GetPointCounts("", "express")
 
@@ -40,7 +40,7 @@ func TestClient_GetPointCounts_no_period(t *testing.T) {
 	assert.Equal(t, "express", out.Package)
 }
 
-func TestClient_GetPointCounts_no_package(t *testing.T) {
+func TestGetPointCounts_no_package(t *testing.T) {
 
 	out, err := GetPointCounts("last-week", "")
 
@@ -51,7 +51,7 @@ func TestClient_GetPointCounts_no_package(t *testing.T) {
 	assert.Empty(t, out.Package)
 }
 
-func TestClient_GetPointCounts(t *testing.T) {
+func TestGetPointCounts(t *testing.T) {
 
 	out, err := GetPointCounts("last-month", "express")
 
@@ -62,7 +62,7 @@ func TestClient_GetPointCounts(t *testing.T) {
 	assert.Equal(t, "express", out.Package)
 }
 
-func TestClient_GetRangeCounts_no_period_no_package(t *testing.T) {
+func TestGetRangeCounts_no_period_no_package(t *testing.T) {
 
 	out, err := GetRangeCounts("", "")
 
@@ -73,7 +73,7 @@ func TestClient_GetRangeCounts_no_period_no_package(t *testing.T) {
 	assert.Empty(t, out.Package)
 }
 
-func TestClient_GetRangeCounts_no_period(t *testing.T) {
+func TestGetRangeCounts_no_period(t *testing.T) {
 
 	out, err := GetRangeCounts("", "express")
 
@@ -84,7 +84,7 @@ func TestClient_GetRangeCounts_no_period(t *testing.T) {
 	assert.Equal(t, "express", out.Package)
 }
 
-func TestClient_GetRangeCounts_no_package(t *testing.T) {
+func TestGetRangeCounts_no_package(t *testing.T) {
 
 	out, err := GetRangeCounts("last-week", "")
 
@@ -95,7 +95,7 @@ func TestClient_GetRangeCounts_no_package(t *testing.T) {
 	assert.Empty(t, out.Package)
 }
 
-func TestClient_GetRangeCounts(t *testing.T) {
+func TestGetRangeCounts(t *testing.T) {
 
 	out, err := GetRangeCounts("last-week", "express")
 
