@@ -11,6 +11,12 @@ import (
 const baseURL string = "https://api.npmjs.org/downloads"
 
 // GetPointCounts gets the total downloads for a given period, for all packages or a specific package.
+//
+//  func ExampleGetPointCounts() {
+//      out, _ := npmdl.GetPointCounts("2017-08-10:2017-08-20", "express")
+//      fmt.Printf("%v\n", out)
+//  }
+//
 // Period is the desired period to be queried. If empty defaults to "last-day".
 // Optionally pass in the package name in the pkg param.
 func GetPointCounts(period string, pkg string) (out *PointCounts, err error) {
@@ -29,6 +35,13 @@ func GetPointCounts(period string, pkg string) (out *PointCounts, err error) {
 }
 
 // GetRangeCounts gets the downloads per day for a given period, for all packages or a specific package.
+//
+// Example using GetRangeCounts get point download counts for express for last week
+//  func ExampleGetRangeCounts() {
+//      out, _ := npmdl.GetRangeCounts("last-week", "express")
+//      fmt.Printf("%v\n", out)
+//  }
+//
 // Period is the desired period to be queried for the range. If empty defaults to "last-week".
 // Optionally pass in the package name in the pkg param.
 func GetRangeCounts(period string, pkg string) (out *RangeCounts, err error) {
